@@ -50,6 +50,56 @@ To run all migrations:
 
 `php migrate.php`
 
+Once a migration is created you can use certain methods to make the migration process easier for example:
+
+*Code will be placed within the up() or down() methods*
+
+`$this->createTable('tbl_name', array('id' => 'int(10) NOT NULL default "0"', 'name' => 'TEXT NULL'), 'ENGINE=InnoDB');`
+
+`$this->insert('tbl_name', array('id' => 1, 'name' => 'test'));`
+
+`$this->update('tbl_name', array('name' => 'new'), 'name=:name, array(':name' => 'test'));`
+
+`$this->delete('tbl_name', 'id=:id', array(':id' => 1));`
+
+`$this->dropTable('tbl_name');`
+
+`$this->emptyTable('tbl_name');`
+
+`$this->addColumn('tbl_name', 'id', 'int(10) NOT NULL default "0"');`
+
+`$this->dropColumn('tbl_name', 'id');`
+
+`$this->getTables();`
+
+`$this->getTable('tbl_name');`
+
+At any time once can just use the pdo handler directly by accessing
+
+`$this->getDb() // Will return pdo handler`
+
+
+	// Also available
+	$this->query('SQL QUERY')->fetchAll();
+	$this->query('SQL QUERY')->fetch();
+
+	// Change fetch mode
+	$this->setFetchMode(PDO::FETCH_OBJ); // the default fetch mode is PDO::FETCH_ASSOC
+	
+	// Execute
+	$this->exec($sql);
+	$this->exec($sql, $params);
+	
+	// Transactions
+	$this->transaction();
+	$this->commit();
+	$this->rollback();
+	
+	// Other
+	$this->lastInsertId();
+	
+	// Some pdo function
+	$this->getDb()->query();
 
 Contributors & Resources
 =======================
