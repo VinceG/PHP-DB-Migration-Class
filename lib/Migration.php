@@ -383,7 +383,7 @@ class Migration {
 	 *
 	 */
 	public function __destruct() {
-		self::getInstance()->disconnect();
+		//self::getInstance()->disconnect();
 	}
 	/**
 	 * Run migrations up
